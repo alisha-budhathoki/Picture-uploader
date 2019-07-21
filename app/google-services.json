@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "668028801261",
+    "firebase_url": "https://roomrental12-6a1ff.firebaseio.com",
+    "project_id": "roomrental12-6a1ff",
+    "storage_bucket": "roomrental12-6a1ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668028801261:android:2814926a59ec7299",
+        "android_client_info": {
+          "package_name": "com.example.roomrental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668028801261-hmr014finbkvfhfdrsg5jtdjp8bt3llb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.roomrental",
+            "certificate_hash": "dadf87975de5b82377229ad31e042947c67cb5cd"
+          }
+        },
+        {
+          "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ2OcmzbCQc95WEXN8wYr7NpJNT16xd64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668028801261:android:cd72dbae62f2a60e",
+        "android_client_info": {
+          "package_name": "com.manish.firebaseupload"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668028801261-aa6kqf308jflji96vm78t5cn03ui8jl3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manish.firebaseupload",
+            "certificate_hash": "3d625c7d7e35035dd2394d7f58aefc019759e59c"
+          }
+        },
+        {
+          "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ2OcmzbCQc95WEXN8wYr7NpJNT16xd64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668028801261:android:d49c650ed5c2c559",
+        "android_client_info": {
+          "package_name": "tabian.com.instagramclone2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668028801261-jn6p732rann62vt54mcomo5ntab55v0d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tabian.com.instagramclone2",
+            "certificate_hash": "dadf87975de5b82377229ad31e042947c67cb5cd"
+          }
+        },
+        {
+          "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ2OcmzbCQc95WEXN8wYr7NpJNT16xd64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668028801261-euno2ptn9t3sb6ifh09uifb67r19jsn1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
