@@ -102,6 +102,65 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void uploadFile() {
+        final ImageView imageView = findViewById(R.id.image);
+        this.image.setDrawingCacheEnabled(true);
+        this.image.buildDrawingCache();
+        Bitmap bitmap = this.image.getDrawingCache();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] data = baos.toByteArray();
+        StorageReference mountainsRef = storageRef.child("myimagename.jpg");
+        UploadTask uploadTask = mountainsRef.putBytes(data);
+        uploadTask.addOnFailureListener(    new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Toast.makeText(MainActivity.this, "Exp:"+exception.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                textView.setText(String.format("Uploading %s: %s", taskSnapshot.getBytesTransferred(),
+                        taskSnapshot.getTotalByteCount()));
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
+        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
+                    throw task.getException();
+                }
+
+                // Continue with the task to get the download URL
+                return storageRef.getDownloadUrl();
+            }
+        })
+                .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downloadUri = task.getResult();
+
+
+                            assert downloadUri != null;
+                            Glide.with(getApplicationContext()).load(downloadUri.toString()).into(imageView);
+                        } else {
+                            // Handle failures
+                            // ...
+                        }
+                    }
+                });
+
 
 
 //        Uri file = Uri.fromFile(new File(Environment.getExternalStorageDirectory().toString() ));
@@ -181,66 +240,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void uploadImageToFirebase()
     {
-        final ImageView imageView = findViewById(R.id.image);
-        this.image.setDrawingCacheEnabled(true);
-        this.image.buildDrawingCache();
-        Bitmap bitmap = this.image.getDrawingCache();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
-        byte[] data = baos.toByteArray();
-        StorageReference mountainsRef = storageRef.child("myimagename.jpg");
-        UploadTask uploadTask = mountainsRef.putBytes(data);
-        uploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Toast.makeText(MainActivity.this, "Exp:"+exception.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                textView.setText(String.format("Uploading %s: %s", taskSnapshot.getBytesTransferred(),
-                        taskSnapshot.getTotalByteCount()));
-
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
-                Toast.makeText(MainActivity.this, "", Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
-        Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()) {
-                    throw task.getException();
-                }
-
-                // Continue with the task to get the download URL
-                return storageRef.getDownloadUrl();
-            }
-        })
-                .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()) {
-                            Uri downloadUri = task.getResult();
-
-
-                            assert downloadUri != null;
-                            Glide.with(getApplicationContext()).load(downloadUri.toString()).into(imageView);
-                        } else {
-                            // Handle failures
-                            // ...
-                        }
-                    }
-                });
-
-    }
+      }
     public void handleChooseImage(View view) {
         Intent pickerPhotoIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(pickerPhotoIntent,0);
